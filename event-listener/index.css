@@ -1,0 +1,12 @@
+* {
+  background-color: rgb(85, 85, 85);
+}
+
+.container {
+  background-color: rgb(205, 205, 138);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
