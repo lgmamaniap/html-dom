@@ -19,7 +19,7 @@ paragraph2.textContent = 'Paragraph modified from JS'
 paragraph.innerHTML = '<b>Paragraph modified from JS using innerHTML</b>'
 
 paragraph.classList.add('h3-danger', 'mx-2')
-*/
+
 
 
 // Create element and innerHTML generates Reflow :()
@@ -43,3 +43,37 @@ arrayElements.forEach((textLi, index) => {
 arrayElements.forEach((textLi, index) => {
   list.innerHTML += `<li id="id-li-${index}">${textLi}</li>`
 })
+*/
+
+// Fragment minimiza el problema de Reflow
+const list = document.getElementById('list')
+const arrayElements = [
+  'First element',
+  'Second element',
+  'Third element',
+]
+
+const fragment = document.createDocumentFragment()
+// Alternativo to createDocumentFragment()
+// const fragment = new DocumentFragment()
+
+arrayElements.forEach((textLi, index) => {
+  const li = document.createElement('li')
+  li.id = `id-li-${index}`
+  li.textContent = textLi
+
+  fragment.appendChild(li)
+})
+// list.appendChild(fragment)
+
+// Insert data in reverse order
+arrayElements.forEach((textLi, index) => {
+  const li = document.createElement('li')
+  li.id = `id-li-${index}`
+  li.textContent = textLi
+
+  const childNode = fragment.firstChild
+
+  fragment.insertBefore(li, childNode)
+})
+list.appendChild(fragment)
